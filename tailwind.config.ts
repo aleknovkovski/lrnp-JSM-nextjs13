@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: "2rem",
+        screens: {
+          "2xl": "1400px",
+        },
+      },
       colors: {
         primary: {
           500: "#FF7000",
@@ -29,7 +36,11 @@ const config: Config = {
           400: "#858EAD",
         },
         "accent-blue": "#1DA1F2",
-      }
+      },
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        spaceGrotesk: ["var(--font-spaceGrotesk)"],
+      },
     },
   },
   plugins: [],
