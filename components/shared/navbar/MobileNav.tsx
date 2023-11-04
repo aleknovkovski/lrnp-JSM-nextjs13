@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
     Sheet,
     SheetContent,
+    SheetClose,
     SheetDescription,
     SheetHeader,
     SheetTitle,
@@ -33,6 +34,11 @@ export default function MobileNav() {
                     <p className="h2-bold text-dark100_light900 font-spaceGrotesk">Dev <span
                         className="text-primary-500">Overflow</span></p>
                 </Link>
+                <div>
+                    <SheetClose>
+                        NavContent
+                    </SheetClose>
+                </div>
             </SheetContent>
         </Sheet>
     );
