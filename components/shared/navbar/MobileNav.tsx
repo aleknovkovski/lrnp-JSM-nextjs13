@@ -9,12 +9,17 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from "next/link";
+import {sidebarLinks} from "@/constants";
 
 const NavContent = () => {
 
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      NavContent
+      {sidebarLinks.map((link) =>
+        <p key={link.label}>
+            {link.label}
+        </p>
+      )}
     </section>
   )
 }
