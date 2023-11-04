@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
     Sheet,
     SheetContent,
@@ -10,8 +11,16 @@ import {
 export default function MobileNav() {
     return (
         <Sheet>
-            <SheetTrigger>Open</SheetTrigger>
-            <SheetContent>
+            <SheetTrigger asChild>
+                <Image
+                    src="/assets/icons/hamburger.svg"
+                    width={36}
+                    height={36}
+                    alt="Menu"
+                    className="invert-colors sm:hidden"
+                />
+            </SheetTrigger>
+            <SheetContent side="left" className="background-light900_dark200 border-none">
                 <SheetHeader>
                     <SheetTitle>Are you sure absolutely sure?</SheetTitle>
                     <SheetDescription>
