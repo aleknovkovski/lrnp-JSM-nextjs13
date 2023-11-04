@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from 'next/image'
 import {SignedIn, UserButton} from "@clerk/nextjs";
+import Theme from "@/components/shared/navbar/Theme";
 
 export default function Navbar() {
     return (
@@ -17,7 +18,8 @@ export default function Navbar() {
                 <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">Dev <span
                     className="text-primary-500">Overflow</span></p>
             </Link>
-
+            <div className="flex-between gap-5">
+            <Theme />
             <SignedIn>
                 <UserButton
                     afterSignOutUrl="/"
@@ -31,6 +33,7 @@ export default function Navbar() {
                     }}
                 />
             </SignedIn>
+            </div>
         </nav>
     );
 }
