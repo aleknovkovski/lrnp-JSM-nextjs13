@@ -10,6 +10,15 @@ import {
 } from "@/components/ui/sheet"
 import Link from "next/link";
 
+const NavContent = () => {
+
+  return (
+    <section>
+      NavContent
+    </section>
+  )
+}
+
 export default function MobileNav() {
     return (
         <Sheet>
@@ -36,7 +45,7 @@ export default function MobileNav() {
                 </Link>
                 <div>
                     <SheetClose>
-                        NavContent
+                        <NavContent />
                     </SheetClose>
 
                     <SignedOut>
