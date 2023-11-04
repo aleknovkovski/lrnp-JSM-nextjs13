@@ -13,7 +13,7 @@ import Link from "next/link";
 const NavContent = () => {
 
   return (
-    <section>
+    <section className="flex h-full flex-col gap-6 pt-16">
       NavContent
     </section>
   )
