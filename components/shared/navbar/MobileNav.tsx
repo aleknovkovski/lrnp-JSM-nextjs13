@@ -15,11 +15,23 @@ const NavContent = () => {
 
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
-      {sidebarLinks.map((link) =>
-        <p key={link.label}>
-            {link.label}
-        </p>
-      )}
+      {sidebarLinks.map((item) => {
+          return (
+          <SheetClose asChild key={item.route}>
+            <Link
+              href={item.route}
+            >
+              <Image
+                src={item.imgURL}
+                alt={item.label}
+                width={20}
+                height={20}
+              />
+              <p>{item.label}</p>
+            </Link>
+          </SheetClose>
+        )
+      })}
     </section>
   )
 }
