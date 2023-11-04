@@ -1,11 +1,11 @@
 import Image from "next/image";
+import { SignedOut } from '@clerk/nextjs'
+import { Button } from '@/components/ui/button'
+
 import {
     Sheet,
     SheetContent,
     SheetClose,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from "next/link";
