@@ -37,7 +37,7 @@ const NavContent = () => {
                 width={20}
                 height={20}
               />
-              <p>{item.label}</p>
+              <p className={`${isActive ? 'base-bold' : 'base-medium'}`}>{item.label}</p>
             </Link>
           </SheetClose>
         )
