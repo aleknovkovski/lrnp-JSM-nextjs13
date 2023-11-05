@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image';
 
 const hotQuestions = [
     {_id: 1, title: 'How do I use express as a custom server in NextJS?'},
@@ -25,13 +26,20 @@ export default function LeftSidebar() {
             <div>
                 <h3 className="h3-bold text-dark200_light900">Top Questions</h3>
                 <div className="mt-7 flex w-full flex-col gap-[30px]">
-                    {hotQuestions.map((question)=> {
+                    {hotQuestions.map((question) => {
                         return (
                             <Link
                                 href={`./questions/${question._id}`}
                                 key={question._id}
                             >
                                 <p key={question._id}>{question.title}</p>
+                                <Image
+                                    src="/assets/icons/chevron-right.svg"
+                                    alt="chevron right"
+                                    width={20}
+                                    height={20}
+                                    className="invert-colors"
+                                />
                             </Link>
                         )
                     })}
