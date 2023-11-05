@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
+import RenderTag from "./RenderTag";
 
 const hotQuestions = [
     {_id: 1, title: 'How do I use express as a custom server in NextJS?'},
@@ -44,6 +45,17 @@ export default function LeftSidebar() {
                             </Link>
                         )
                     })}
+                </div>
+            </div>
+            <div className="mt-16">
+                <h3 className="h3-bold text-dark200_light900">Popular Tags</h3>
+                <div>
+                    {popularTags.map((tag) => (
+                        <RenderTag
+                            key={tag._id}
+                            name={tag.name}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
