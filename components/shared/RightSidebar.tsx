@@ -33,7 +33,7 @@ export default function LeftSidebar() {
                                 key={question._id}
                                 className='flex items-center justify-between gap-7'
                             >
-                                <p>{question.title}</p>
+                                <p className="body-medium text-dark500_light700">{question.title}</p>
                                 <Image
                                     src="/assets/icons/chevron-right.svg"
                                     alt="chevron right"
