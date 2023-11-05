@@ -1,5 +1,11 @@
+import {Input} from "@/components/ui/input";
+
 export default function GlobalSearch() {
     return (
-        <>GlobalSearch</>
+        <Input
+            type="text"
+            placeholder="Search globally"
+            value=""
+        />
     );
 }
