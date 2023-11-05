@@ -1,9 +1,13 @@
+import { Badge } from "../ui/badge";
+
 interface Props {
   name: string;
 }
 
 export default function RenderTag(props: Props) {
     return (
-        <p>{props.name}</p>
+        <Badge variant="outline">
+            {props.name}
+        </Badge>
     );
 }
