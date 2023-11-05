@@ -22,7 +22,13 @@ export default function LeftSidebar() {
             className="custom-scrollbar background-light900_dark200 light-border sticky right-0 top-0 h-screen overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none lg:w-[266px]">
             <div>
                 <h3 className="h3-bold text-dark200_light900">Top Questions</h3>
-                <div>Actual Questions</div>
+                <div>
+                    {hotQuestions.map((question)=> {
+                        return (
+                            <p key={question._id}>hello</p>
+                        )
+                    })}
+                </div>
             </div>
         </section>
     );
