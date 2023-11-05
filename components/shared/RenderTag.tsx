@@ -1,5 +1,9 @@
-export default function RenderTag() {
+interface Props {
+  name: string;
+}
+
+export default function RenderTag(props: Props) {
     return (
-        <>RenderTag</>
+        <p>{props.name}</p>
     );
 }
