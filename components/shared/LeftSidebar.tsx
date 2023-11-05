@@ -28,7 +28,7 @@ export default function LeftSidebar() {
                             height={20}
                             className={`${isActive ? "" : "invert-colors"}`}
                         />
-                        <p className={`${isActive ? 'base-bold' : 'base-medium'}`}>{item.label}</p>
+                        <p className={`${isActive ? 'base-bold' : 'base-medium'} max-lg:hidden`}>{item.label}</p>
                     </Link>
                 )
             })}
