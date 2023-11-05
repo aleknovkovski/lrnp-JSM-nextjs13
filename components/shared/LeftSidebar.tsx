@@ -8,7 +8,7 @@ export default function LeftSidebar() {
     const pathname = usePathname();
 
     return (
-        <nav className="h-screen overflow-y-auto bg-amber-500 pt-36 lg:w-[266px]">
+        <nav className="background-light900_dark200 light-border h-screen overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none lg:w-[266px]">
             {sidebarLinks.map((item) => {
                 const isActive = (pathname.includes(item.route) && item.route.length > 1) || pathname === item.route;
 
