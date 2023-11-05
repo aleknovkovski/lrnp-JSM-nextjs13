@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { Badge } from "../ui/badge";
+import {Badge} from "../ui/badge";
 
 interface Props {
-  name: string;
+    name: string;
 }
 
 export default function RenderTag(props: Props) {
     return (
         <Link href={`/tags/${props.name}`}>
-        <Badge variant="outline">
-            {props.name}
-        </Badge>
+            <Badge variant="outline">
+                {props.name}
+            </Badge>
         </Link>
     );
 }
