@@ -1,11 +1,17 @@
+'use client'
 import {sidebarLinks} from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
+import {usePathname} from "next/navigation";
 
 export default function LeftSidebar() {
+    const pathname = usePathname();
+
     return (
         <nav className="h-screen overflow-y-auto bg-amber-500 pt-36 lg:w-[266px]">
             {sidebarLinks.map((item) => {
+                const isActive = (pathname.includes(item.route) && item.route.length > 1) || pathname === item.route;
+
                 return (
                     <Link
                         key={item.label}
