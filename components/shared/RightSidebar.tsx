@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const hotQuestions = [
     {_id: 1, title: 'How do I use express as a custom server in NextJS?'},
     {_id: 2, title: 'Cascading Deletes in SQLAlchemy?'},
@@ -25,7 +27,12 @@ export default function LeftSidebar() {
                 <div>
                     {hotQuestions.map((question)=> {
                         return (
-                            <p key={question._id}>hello</p>
+                            <Link
+                                href={`./questions/${question._id}`}
+                                key={question._id}
+                            >
+                                <p key={question._id}>hello</p>
+                            </Link>
                         )
                     })}
                 </div>
