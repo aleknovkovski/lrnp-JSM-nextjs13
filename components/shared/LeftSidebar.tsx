@@ -11,7 +11,7 @@ export default function LeftSidebar() {
 
     return (
         <nav
-            className="background-light900_dark200 light-border h-screen overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none lg:w-[266px]">
+            className="custom-scrollbar background-light900_dark200 light-border h-screen overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none lg:w-[266px]">
             <div className="flex flex-1 flex-col gap-6">
                 {sidebarLinks.map((item) => {
                     const isActive = (pathname.includes(item.route) && item.route.length > 1) || pathname === item.route;
