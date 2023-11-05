@@ -54,6 +54,8 @@ export default function LeftSidebar() {
                         <RenderTag
                             key={tag._id}
                             name={tag.name}
+                            _id={tag._id}
+                            totalQuestions={tag.totalQuestions}
                         />
                     ))}
                 </div>
