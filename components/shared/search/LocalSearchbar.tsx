@@ -7,7 +7,7 @@ interface Props {
 
 export default function LocalSearchbar(props: Props) {
     return (
-       <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">
+       <div className="background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4">
        <Image
            src="/assets/icons/search.svg"
            alt="search"
