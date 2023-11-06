@@ -19,6 +19,9 @@ export default function Home() {
                 <LocalSearchbar
                     placeholderText="Search questions..."
                     additionalClasses="flex-1"
+                    imgSrc="/assets/icons/search.svg"
+                    iconPosition="left"
+                    route="/"
                 />
 
                 Filters

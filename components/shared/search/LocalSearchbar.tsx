@@ -4,7 +4,9 @@ import {Input} from "@/components/ui/input";
 interface Props {
     imgSrc: string;
     additionalClasses?: string;
-    placeholderText: string
+    placeholderText: string;
+    route: string;
+    iconPosition: string;
 }
 
 export default function LocalSearchbar(props: Props) {
