@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import {Input} from "@/components/ui/input";
 
-export default function LocalSearchbar() {
+interface Props {
+    placeholderText: string
+}
+
+export default function LocalSearchbar(props: Props) {
     return (
        <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">
        <Image
@@ -13,7 +17,7 @@ export default function LocalSearchbar() {
        />
        <Input
            type="text"
-           placeholder="Search globally"
+           placeholder={props.placeholderText}
            value=""
            className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
        />
