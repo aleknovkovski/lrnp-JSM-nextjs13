@@ -5,6 +5,7 @@ interface Props {
     _id: number;
     name: string;
     totalQuestions?: number;
+    showCount?: boolean
 }
 
 export default function RenderTag(props: Props) {
@@ -14,7 +15,9 @@ export default function RenderTag(props: Props) {
                 {props.name}
             </Badge>
 
-            <p className="small-medium text-dark500_light700">{props.totalQuestions}</p>
+            {props.showCount &&
+                <p className="small-medium text-dark500_light700">{props.totalQuestions}</p>
+            }
         </Link>
     );
 }
