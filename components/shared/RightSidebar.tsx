@@ -56,6 +56,7 @@ export default function LeftSidebar() {
                             name={tag.name}
                             _id={tag._id}
                             totalQuestions={tag.totalQuestions}
+                            showCount
                         />
                     ))}
                 </div>
