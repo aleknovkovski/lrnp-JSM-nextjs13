@@ -1,6 +1,7 @@
 import {
     Select,
     SelectContent,
+  SelectGroup,
     SelectItem,
     SelectTrigger,
     SelectValue,
@@ -25,11 +26,13 @@ export default function Filter(props: Props) {
                 </div>
             </SelectTrigger>
             <SelectContent>
+              <SelectGroup>
                 {props.filters.map((filter)=> {
                     return (
                         <SelectItem key={filter.value} value={filter.value}>{filter.name}</SelectItem>
                     )
                 })}
+              </SelectGroup>
             </SelectContent>
         </Select>
         </div>
