@@ -30,7 +30,7 @@ export default function LocalSearchbar(props: Props) {
        <Input
            type="text"
            placeholder={props.placeholderText}
-           value=""
+           defaultValue=""
            className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
        />
 
