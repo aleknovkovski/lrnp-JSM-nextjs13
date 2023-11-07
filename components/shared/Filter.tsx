@@ -6,7 +6,14 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-export default function Filter() {
+interface Props {
+  filters: {
+    name: string,
+    value: string,
+  }[];
+}
+
+export default function Filter(props: Props) {
     return (
         <Select>
             <SelectTrigger className="w-[180px]">
