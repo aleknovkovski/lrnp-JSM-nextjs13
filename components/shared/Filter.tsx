@@ -20,9 +20,11 @@ export default function Filter(props: Props) {
                 <SelectValue placeholder="Theme"/>
             </SelectTrigger>
             <SelectContent>
-                <SelectItem value="light">Light</SelectItem>
-                <SelectItem value="dark">Dark</SelectItem>
-                <SelectItem value="system">System</SelectItem>
+                {props.filters.map((filter)=> {
+                    return (
+                        <SelectItem key={filter.value} value={filter.value}>{filter.name}</SelectItem>
+                    )
+                })}
             </SelectContent>
         </Select>
     );
