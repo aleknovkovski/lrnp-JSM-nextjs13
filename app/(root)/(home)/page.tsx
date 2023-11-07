@@ -28,6 +28,7 @@ export default function Home() {
 
                 <Filter
                     filters={HomePageFilters}
+                    containerClasses="hidden max-md:flex"
                 />
 
             </div>
