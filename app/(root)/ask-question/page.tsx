@@ -1,3 +1,6 @@
+import Question from "@/components/shared/forms/Question";
+
+
 export default async function Page () {
 
 
@@ -7,7 +10,7 @@ export default async function Page () {
 
 
      <div className="mt-9">
-       Question
+       <Question />
      </div>
    </div>
  )
