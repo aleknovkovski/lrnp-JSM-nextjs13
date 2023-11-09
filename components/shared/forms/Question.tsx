@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {Editor} from '@tinymce/tinymce-react';
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
@@ -23,6 +23,7 @@ import Image from 'next/image';
 
 export default function Question() {
     const editorRef = useRef(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
@@ -35,8 +36,7 @@ export default function Question() {
 
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
+        setIsSubmitting(true);
         console.log(values)
     }
 
@@ -191,7 +191,12 @@ export default function Question() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                >
+                    Submit
+                </Button>
             </form>
         </Form>
     )
