@@ -194,6 +194,7 @@ export default function Question() {
                 <Button
                     type="submit"
                     disabled={isSubmitting}
+                    className="primary-gradient w-fit !text-light-900"
                 >
                     Submit
                 </Button>
