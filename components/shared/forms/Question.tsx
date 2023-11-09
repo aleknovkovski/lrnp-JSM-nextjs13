@@ -25,6 +25,8 @@ export default function Question() {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const type:any = 'create'
+
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
@@ -196,7 +198,15 @@ export default function Question() {
                     disabled={isSubmitting}
                     className="primary-gradient w-fit !text-light-900"
                 >
-                    Submit
+                    {isSubmitting ? (
+                        <>
+                            {type === 'edit' ? 'Editing...' : 'Posting...'}
+                        </>
+                    ) : (
+                        <>
+                            {type === 'edit' ? 'Edit Question' : 'Ask a Question'}
+                        </>
+                    )}
                 </Button>
             </form>
         </Form>
