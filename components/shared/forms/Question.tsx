@@ -39,7 +39,19 @@ export default function Question() {
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof QuestionsSchema>) {
         setIsSubmitting(true);
-        console.log(values)
+
+        try {
+            console.log(values)
+            // make an async call to your API -> create a question
+            // call will contain all form data
+
+            // navigate to home page if successfully submitted
+        } catch (error) {
+            console.log(error)
+
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     function handleInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>, field: any) {
