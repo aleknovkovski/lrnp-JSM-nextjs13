@@ -23,3 +23,7 @@ const QuestionSchema = new Schema({
   answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
   createdAt: { type: Date, default: Date.now }
 })
+
+const Question = models.Question || model('Question', QuestionSchema);
+
+export default Question;
