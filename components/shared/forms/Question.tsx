@@ -20,6 +20,8 @@ import {Input} from "@/components/ui/input"
 import {QuestionsSchema} from "@/lib/validations";
 import {Badge} from "@/components/ui/badge";
 import Image from 'next/image';
+import {connectToDatabase} from "@/lib/mongoose";
+import { createQuestion } from '@/lib/actions/question.action';
 
 export default function Question() {
     const editorRef = useRef(null);
@@ -37,11 +39,12 @@ export default function Question() {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+    async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
         setIsSubmitting(true);
 
         try {
             console.log(values)
+            await createQuestion({})
             // make an async call to your API -> create a question
             // call will contain all form data
 
