@@ -56,7 +56,7 @@ export default function Question({ mongoUserId }: Props) {
                 title: values.title,
                 content: values.explanation,
                 tags: values.tags,
-                // author: ,
+                author: JSON.parse(mongoUserId),
                 // path: ,
             });
 
