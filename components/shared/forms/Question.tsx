@@ -48,6 +48,14 @@ export default function Question() {
             // make an async call to your API -> create a question
             // call will contain all form data
 
+            await createQuestion({
+                title: values.title,
+                content: values.explanation,
+                tags: values.tags,
+                // author: ,
+                // path: ,
+            });
+
             // navigate to home page if successfully submitted
         } catch (error) {
             console.log(error)
