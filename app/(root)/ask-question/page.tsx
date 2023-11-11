@@ -20,7 +20,7 @@ export default async function Page() {
 
 
             <div className="mt-9">
-                <Question/>
+                <Question mongoUserId={JSON.stringify(mongoUser._id)}/>
             </div>
         </div>
     )
