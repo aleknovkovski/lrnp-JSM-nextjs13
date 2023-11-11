@@ -1,8 +1,18 @@
 import Question from "@/components/shared/forms/Question";
+import {getUserById} from "@/lib/actions/user.action";
+import {redirect} from "next/navigation";
 
 
 export default async function Page() {
+    // get clerkId from clerk auth
+    // const { userId } = auth();
 
+    const userId = '123456'
+    if (!userId) redirect('/sign-in');
+
+    const mongoUser = await getUserById({userId});
+
+    console.log(mongoUser);
 
     return (
         <div>
