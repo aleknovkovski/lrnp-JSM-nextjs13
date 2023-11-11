@@ -30,6 +30,10 @@ export async function createQuestion(params: any) {
             tagDocuments.push(existingTag._id);
         }
 
+        await Question.findByIdAndUpdate(question._id, {
+            $push: {tags: {$each: tagDocuments}}
+        });
+
     } catch (error) {
         console.log('error')
     }
