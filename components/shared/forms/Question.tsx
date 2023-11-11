@@ -23,11 +23,11 @@ import Image from 'next/image';
 import {connectToDatabase} from "@/lib/mongoose";
 import { createQuestion } from '@/lib/actions/question.action';
 
+const type:any = 'create'
+
 export default function Question() {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
-    const type:any = 'create'
 
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
