@@ -25,7 +25,11 @@ import { createQuestion } from '@/lib/actions/question.action';
 
 const type:any = 'create'
 
-export default function Question() {
+interface Props {
+  mongoUserId: string;
+}
+
+export default function Question({ mongoUserId }: Props) {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
