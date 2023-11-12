@@ -22,6 +22,7 @@ import {Badge} from "@/components/ui/badge";
 import Image from 'next/image';
 import {connectToDatabase} from "@/lib/mongoose";
 import { createQuestion } from '@/lib/actions/question.action';
+import {usePathname, useRouter} from 'next/navigation';
 
 const type:any = 'create'
 
@@ -32,6 +33,8 @@ interface Props {
 export default function Question({ mongoUserId }: Props) {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
 
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
@@ -57,10 +60,11 @@ export default function Question({ mongoUserId }: Props) {
                 content: values.explanation,
                 tags: values.tags,
                 author: JSON.parse(mongoUserId),
-                // path: ,
+                path: pathname
             });
 
             // navigate to home page if successfully submitted
+            router.push('/');
         } catch (error) {
             console.log(error)
 
