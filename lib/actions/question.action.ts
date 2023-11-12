@@ -5,6 +5,7 @@ import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import {CreateQuestionParams, GetQuestionsParams} from "@/lib/actions/shared.types";
+import {revalidatePath} from "next/cache";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -56,6 +57,7 @@ export async function createQuestion(params: CreateQuestionParams) {
 
         // TODO: Increment author's reputation by +5 for creating a question
 
+        revalidatePath(path)
     } catch (error) {
         console.log('error')
     }
