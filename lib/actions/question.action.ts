@@ -4,8 +4,9 @@ import {connectToDatabase} from "@/lib/mongoose";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
+import {CreateQuestionParams, GetQuestionsParams} from "@/lib/actions/shared.types";
 
-export async function getQuestions(params: any) {
+export async function getQuestions(params: GetQuestionsParams) {
   try {
     connectToDatabase();
 
@@ -21,7 +22,7 @@ export async function getQuestions(params: any) {
   }
 }
 
-export async function createQuestion(params: any) {
+export async function createQuestion(params: CreateQuestionParams) {
     try {
         await connectToDatabase()
         console.log('connected to database')
