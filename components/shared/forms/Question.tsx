@@ -51,7 +51,6 @@ export default function Question({ mongoUserId }: Props) {
 
         try {
             console.log(values)
-            await createQuestion({})
             // make an async call to your API -> create a question
             // call will contain all form data
 
