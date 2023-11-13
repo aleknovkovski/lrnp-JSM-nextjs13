@@ -20,7 +20,6 @@ import {Input} from "@/components/ui/input"
 import {QuestionsSchema} from "@/lib/validations";
 import {Badge} from "@/components/ui/badge";
 import Image from 'next/image';
-import {connectToDatabase} from "@/lib/mongoose";
 import { createQuestion } from '@/lib/actions/question.action';
 import {usePathname, useRouter} from 'next/navigation';
 
