@@ -2,8 +2,21 @@
 
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
-import {CreateUserParams, UpdateUserParams} from "@/lib/actions/shared.types";
+import {CreateUserParams, GetAllUsersParams, UpdateUserParams} from "@/lib/actions/shared.types";
 import {revalidatePath} from "next/cache";
+
+export async function getAllUsers(params: GetAllUsersParams) {
+  try {
+    connectToDatabase();
+
+    const users = await User.find({})
+
+    return {users};
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
 export async function getUserById(params: any) {
   try {
