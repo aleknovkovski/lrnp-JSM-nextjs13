@@ -29,7 +29,9 @@ export async function getQuestionById(params: any) {
 
     const { questionId } = params;
 
-    const question = await Question.findOne({ _id: questionId });
+    const question = await Question.findOne({ _id: questionId })
+      .populate({ path: 'tags', model: Tag, select: '_id name'})
+      .populate({ path: 'author', model: User, select: '_id clerkId name picture'})
 
     return question;
   } catch (error) {
