@@ -3,6 +3,7 @@ import {formatAndDivideNumber, getTimestamp} from "@/lib/utils";
 import Metric from "@/components/shared/Metric";
 import Image from 'next/image';
 import Link from 'next/link';
+import ParseHTML from "@/components/shared/ParseHTML";
 
 interface params {params: { id: string }}
 
@@ -59,6 +60,8 @@ export default async function QuestionPage({params} : params) {
             textStyles="small-medium text-dark400_light800"
           />
       </div>
+
+      <ParseHTML data={result.content} />
     </>
   )
 }
