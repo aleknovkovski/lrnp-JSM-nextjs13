@@ -1,5 +1,7 @@
-export default function QuestionPage() {
+interface params {params: { id: string }}
+
+export default function QuestionPage({params} : params) {
     return (
-        <>QuestionPage</>
+        <>{`QuestionPage for question ${params.id}`}</>
     );
 }
