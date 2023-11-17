@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
+import Answer from "@/components/forms/Answer";
 
 interface params {params: { id: string }}
 
@@ -74,6 +75,8 @@ export default async function QuestionPage({params} : params) {
           />
         ))}
       </div>
+
+      <Answer />
     </>
   )
 }
