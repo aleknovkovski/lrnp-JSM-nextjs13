@@ -6,12 +6,21 @@ import Link from 'next/link';
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 import Answer from "@/components/forms/Answer";
+import {auth} from "@clerk/nextjs";
+import {getUserById} from "@/lib/actions/user.action";
 
 interface params {params: { id: string }}
 
 export default async function QuestionPage({params} : params) {
 
     const result = await getQuestionById({questionId: params.id})
+    const { userId: clerkId } = auth();
+
+    let mongoUser;
+
+    if(clerkId) {
+    mongoUser = await getUserById({ userId: clerkId })
+    }
 
      return (
     <>
@@ -76,7 +85,11 @@ export default async function QuestionPage({params} : params) {
         ))}
       </div>
 
-      <Answer />
+      <Answer
+        question={result.content}
+        questionId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser._id)}
+      />
     </>
   )
 }

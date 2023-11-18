@@ -11,7 +11,13 @@ import { useTheme } from '@/context/ThemeProvider'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 
-const Answer = () => {
+interface Props {
+  question: string;
+  questionId: string;
+  authorId: string;
+}
+
+const Answer = ({ question, questionId, authorId }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { mode } = useTheme();
   const editorRef = useRef(null)
