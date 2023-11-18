@@ -8,6 +8,7 @@ import RenderTag from "@/components/shared/RenderTag";
 import Answer from "@/components/forms/Answer";
 import {auth} from "@clerk/nextjs";
 import {getUserById} from "@/lib/actions/user.action";
+import AllAnswers from "@/components/shared/AllAnswers";
 
 interface params {params: { id: string }}
 
@@ -84,6 +85,12 @@ export default async function QuestionPage({params} : params) {
           />
         ))}
       </div>
+
+      <AllAnswers
+        questionId={result._id}
+        userId={JSON.stringify(mongoUser._id)}
+        totalAnswers={result.answers.length}
+      />
 
       <Answer
         question={result.content}
