@@ -1,10 +1,26 @@
 "use server"
 
 import {connectToDatabase} from "@/lib/mongoose";
-import {CreateAnswerParams} from "@/lib/actions/shared.types";
+import {CreateAnswerParams, GetAnswersParams} from "@/lib/actions/shared.types";
 import {revalidatePath} from "next/cache";
 import Answer from "@/database/answer.model";
 import Question from "@/database/question.model";
+import User from "@/database/user.model";
+
+export async function getAllAnswers(params: GetAnswersParams) {
+ try {
+   connectToDatabase();
+
+   const answers = await Answer.find({})
+  .populate({ path: 'author', model: User, select: '_id clerkId name picture'})
+  .sort({ createdAt: -1 });
+
+   return { answers }
+ } catch (error) {
+   console.log(error);
+   throw error;
+ }
+}
 
 export async function createAnswer(params: CreateAnswerParams) {
     try {
