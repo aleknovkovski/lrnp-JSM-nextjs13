@@ -38,7 +38,8 @@ export async function createAnswer(params: CreateAnswerParams) {
         // Add the answer to the question's answers array
         Question.findByIdAndUpdate(question, { $push: { answers: answer._id } })
 
-        // TODO: Need to add interactions model on app
+        // TODO: Add interaction
+        // Need to have an interactions model in the app first
 
         revalidatePath(path)
     } catch (error) {
