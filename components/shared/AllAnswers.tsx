@@ -5,6 +5,7 @@ import Filter from "@/components/shared/Filter";
 import {AnswerFilters} from "@/constants/filters";
 import {getAllAnswers} from "@/lib/actions/answer.action";
 import Image from 'next/image';
+import Votes from "@/components/shared/Votes";
 
 interface Props {
  questionId: string;
@@ -57,8 +58,16 @@ export default async function AllAnswers ({ questionId, userId, totalAnswers, pa
                  </div>
                </Link>
                <div className="flex justify-end">
-                 VOTING
-               </div>
+                  <Votes
+                    type="Answer"
+                    itemId={JSON.stringify(answer._id)}
+                    userId={JSON.stringify(userId)}
+                    upvotes={answer.upvotes.length}
+                    hasupVoted={answer.upvotes.includes(userId)}
+                    downvotes={answer.downvotes.length}
+                    hasdownVoted={answer.downvotes.includes(userId)}
+                  />
+                </div>
              </div>
 
 
