@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import {formatAndDivideNumber} from "@/lib/utils";
+import {usePathname} from "next/navigation";
+import {downvoteQuestion, upvoteQuestion} from "@/lib/actions/question.action";
 
 interface Props {
   type: string;
@@ -24,14 +26,46 @@ export default function Votes ({
   hasdownVoted,
   hasSaved,
 }: Props) {
-
+  const pathname = usePathname();
   const handleSave = async () => {
     console.log("handleSave ran")
   }
 
   const handleVote = async (action: string) => {
-    console.log("handleVote ran")
+    if(!userId) {
+      return;
     }
+
+    if(action === 'upvote') {
+      if(type === 'Question') {
+        await upvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        })
+      }
+
+      // todo: show a toast
+      return;
+    }
+
+    if(action === 'downvote') {
+      if(type === 'Question') {
+        await downvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        })
+      }
+
+      // todo: show a toast
+
+    }
+  }
 
   return (
     <div className="flex gap-5">
