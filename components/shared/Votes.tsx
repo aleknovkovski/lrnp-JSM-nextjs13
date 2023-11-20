@@ -4,6 +4,7 @@ import Image from "next/image";
 import {formatAndDivideNumber} from "@/lib/utils";
 import {usePathname} from "next/navigation";
 import {downvoteQuestion, upvoteQuestion} from "@/lib/actions/question.action";
+import {downvoteAnswer, upvoteAnswer} from "@/lib/actions/answer.action";
 
 interface Props {
   type: string;
@@ -32,7 +33,7 @@ export default function Votes ({
   }
 
   const handleVote = async (action: string) => {
-    if(!userId) {
+     if(!userId) {
       return;
     }
 
@@ -40,6 +41,14 @@ export default function Votes ({
       if(type === 'Question') {
         await upvoteQuestion({
           questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        })
+      } else if(type === 'Answer') {
+        await upvoteAnswer({
+          answerId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
@@ -55,6 +64,14 @@ export default function Votes ({
       if(type === 'Question') {
         await downvoteQuestion({
           questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        })
+      } else if(type === 'Answer') {
+        await downvoteAnswer({
+          answerId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
