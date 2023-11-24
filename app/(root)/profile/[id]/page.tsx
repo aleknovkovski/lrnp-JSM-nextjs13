@@ -6,6 +6,7 @@ import { SignedIn, auth } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import ProfileLink from "@/components/shared/ProfileLink";
 
 const Page = async ({ params, searchParams}: URLProps) => {
   const { userId: clerkId } = auth();
@@ -29,14 +30,24 @@ const Page = async ({ params, searchParams}: URLProps) => {
 
             <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
               {userInfo.user.portfolioWebsite && (
-                "portfolioLink"
+                <ProfileLink
+                  imgUrl="/assets/icons/link.svg"
+                  href={userInfo.user.portfolioWebsite}
+                  title="Portfolio"
+                />
               )}
 
               {userInfo.user.location && (
-                "userLocation"
+                <ProfileLink
+                  imgUrl="/assets/icons/location.svg"
+                  title={userInfo.user.location}
+                />
               )}
 
-                Joined at time
+                <ProfileLink
+                  imgUrl="/assets/icons/calendar.svg"
+                  title={"joinedAt Time"}
+                />
             </div>
 
             {userInfo.user.bio && (
