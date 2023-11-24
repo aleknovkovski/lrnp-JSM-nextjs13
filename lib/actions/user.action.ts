@@ -4,14 +4,17 @@ import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
 import {
   CreateUserParams,
-  GetAllUsersParams, GetSavedQuestionsParams,
+  GetAllUsersParams,
+  GetSavedQuestionsParams,
   ToggleSaveQuestionParams,
-  UpdateUserParams
+  UpdateUserParams,
+  GetUserByIdParams
 } from "@/lib/actions/shared.types";
 import {revalidatePath} from "next/cache";
 import {FilterQuery} from "mongoose";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
+import Answer from "@/database/answer.model";
 
 export async function getAllUsers(params: GetAllUsersParams) {
   try {
@@ -114,6 +117,7 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
     connectToDatabase();
 
     const { clerkId, page = 1, pageSize = 10, filter, searchQuery } = params;
+    console.log(page, pageSize, filter) // temp so TS doesn't complain they're unused yet
 
     const query: FilterQuery<typeof Question> = searchQuery
       ? { title: { $regex: new RegExp(searchQuery, 'i') } }
@@ -136,6 +140,32 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
     const savedQuestions = user.saved;
 
     return { questions: savedQuestions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserInfo(params: GetUserByIdParams) {
+  try {
+    connectToDatabase();
+
+    const { userId } = params;
+
+    const user = await User.findOne({ clerkId: userId });
+
+    if(!user) {
+      throw new Error('User not found');
+    }
+
+    const totalQuestions = await Question.countDocuments({ author: user._id })
+    const totalAnswers = await Answer.countDocuments({ author: user._id });
+
+    return {
+      user,
+      totalQuestions,
+      totalAnswers
+    }
   } catch (error) {
     console.log(error);
     throw error;
