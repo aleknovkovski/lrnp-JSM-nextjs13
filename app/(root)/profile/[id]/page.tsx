@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ProfileLink from "@/components/shared/ProfileLink";
 import Stats from '@/components/shared/Stats'
+import QuestionTab from "@/components/shared/QuestionTab";
 
 const Page = async ({ params, searchParams}: URLProps) => {
   const { userId: clerkId } = auth();
@@ -84,7 +85,11 @@ const Page = async ({ params, searchParams}: URLProps) => {
             <TabsTrigger value="answers" className="tab">Answers</TabsTrigger>
           </TabsList>
           <TabsContent value="top-posts">
-            Questions
+              <QuestionTab
+                  searchParams={searchParams}
+                  userId={userInfo.user._id}
+                  clerkId={clerkId}
+              />
           </TabsContent>
           <TabsContent value="answers" className="flex w-full flex-col gap-6">
             Answers
