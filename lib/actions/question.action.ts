@@ -4,8 +4,15 @@ import {connectToDatabase} from "@/lib/mongoose";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
-import {CreateQuestionParams, GetQuestionsParams, QuestionVoteParams} from "@/lib/actions/shared.types";
+import {
+    CreateQuestionParams,
+    DeleteQuestionParams,
+    GetQuestionsParams,
+    QuestionVoteParams
+} from "@/lib/actions/shared.types";
 import {revalidatePath} from "next/cache";
+import Answer from "@/database/answer.model";
+import Interaction from "@/database/interaction.model";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -146,4 +153,24 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     console.log(error);
     throw error;
   }
+}
+
+export async function deleteQuestion(params: DeleteQuestionParams) {
+    try {
+        connectToDatabase();
+
+
+        const { questionId, path } = params;
+
+
+        await Question.deleteOne({ _id: questionId });
+        await Answer.deleteMany({ question: questionId });
+        await Interaction.deleteMany({ question: questionId });
+        await Tag.updateMany({ questions: questionId }, { $pull: { questions: questionId }});
+
+
+        revalidatePath(path);
+    } catch (error) {
+        console.log(error);
+    }
 }

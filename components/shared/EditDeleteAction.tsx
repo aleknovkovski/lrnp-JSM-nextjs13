@@ -2,7 +2,9 @@
 
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import {deleteQuestion} from "@/lib/actions/question.action";
+import {deleteAnswer} from "@/lib/actions/answer.action";
 
 
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 
 
 const EditDeleteAction = ({ type, itemId }: Props) => {
+    const pathname = usePathname();
     const router = useRouter();
 
 
@@ -23,10 +26,16 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
     const handleDelete = async () => {
         if(type === 'Question') {
             // Delete question
-
-
+            await deleteQuestion({
+                questionId: JSON.parse(itemId),
+                path: pathname
+            })
         } else if(type === 'Answer') {
             // Delete answer
+            await deleteAnswer({
+                answerId: JSON.parse(itemId),
+                path: pathname
+            })
         }
     };
 
