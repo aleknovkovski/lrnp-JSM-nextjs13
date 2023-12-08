@@ -195,6 +195,7 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
                             <FormControl className="mt-3.5">
                                 <>
                                     <Input
+                                        disabled={type === 'Edit'}
                                         className="no-focus paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
                                         placeholder="Add tags..."
                                         onKeyDown={(e) => handleInputKeyDown(e, field)}
