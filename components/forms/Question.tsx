@@ -20,7 +20,7 @@ import {Input} from "@/components/ui/input"
 import {QuestionsSchema} from "@/lib/validations";
 import {Badge} from "@/components/ui/badge";
 import Image from 'next/image';
-import { createQuestion } from '@/lib/actions/question.action';
+import {createQuestion, editQuestion} from '@/lib/actions/question.action';
 import {usePathname, useRouter} from 'next/navigation';
 import {useTheme} from "@/context/ThemeProvider";
 
@@ -54,22 +54,28 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
         setIsSubmitting(true);
 
         try {
-            console.log(values)
-            // make an async call to your API -> create a question
-            // call will contain all form data
+            if(type === 'Edit') {
+                await editQuestion({
+                    questionId: parsedQuestionDetails._id,
+                    title: values.title,
+                    content: values.explanation,
+                    path: pathname,
+                })
 
-            await createQuestion({
-                title: values.title,
-                content: values.explanation,
-                tags: values.tags,
-                author: JSON.parse(mongoUserId),
-                path: pathname
-            });
+                router.push(`/question/${parsedQuestionDetails._id}`);
+            } else {
+                await createQuestion({
+                    title: values.title,
+                    content: values.explanation,
+                    tags: values.tags,
+                    author: JSON.parse(mongoUserId),
+                    path: pathname,
+                });
 
-            // navigate to home page if successfully submitted
-            router.push('/');
+                router.push('/');
+            }
+
         } catch (error) {
-            console.log(error)
 
         } finally {
             setIsSubmitting(false);
