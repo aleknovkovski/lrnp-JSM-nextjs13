@@ -38,13 +38,14 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
     const { mode } = useTheme();
 
     const parsedQuestionDetails = JSON.parse(questionDetails || '');
+    const groupedTags = parsedQuestionDetails.tags.map((tag) => tag.name)
 
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
             title: parsedQuestionDetails.title || '',
             explanation: '',
-            tags: []
+            tags: groupedTags || []
         },
     })
 
