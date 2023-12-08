@@ -24,13 +24,13 @@ import { createQuestion } from '@/lib/actions/question.action';
 import {usePathname, useRouter} from 'next/navigation';
 import {useTheme} from "@/context/ThemeProvider";
 
-const type:any = 'create'
-
 interface Props {
-  mongoUserId: string;
+    type?: string;
+    mongoUserId: string;
+    questionDetails?: string;
 }
 
-export default function Question({ mongoUserId }: Props) {
+export default function Question({ type, mongoUserId, questionDetails }: Props) {
     const editorRef = useRef(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
