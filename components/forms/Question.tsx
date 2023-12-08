@@ -233,11 +233,11 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
                 >
                     {isSubmitting ? (
                         <>
-                            {type === 'edit' ? 'Editing...' : 'Posting...'}
+                            {type === 'Edit' ? 'Editing...' : 'Posting...'}
                         </>
                     ) : (
                         <>
-                            {type === 'edit' ? 'Edit Question' : 'Ask a Question'}
+                            {type === 'Edit' ? 'Edit Question' : 'Ask a Question'}
                         </>
                     )}
                 </Button>
