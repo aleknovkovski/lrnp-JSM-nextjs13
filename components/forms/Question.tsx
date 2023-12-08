@@ -209,13 +209,13 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
                                                        onClick={() => handleTagRemove(tag, field)}
                                                 >
                                                     {tag}
-                                                    <Image
+                                                    {type !== 'Edit' && (<Image
                                                         src="/assets/icons/close.svg"
                                                         alt="Close icon"
                                                         width={12}
                                                         height={12}
                                                         className="cursor-pointer object-contain invert-0 dark:invert"
-                                                    />
+                                                    />)}
                                                 </Badge>
                                             ))}
                                         </div>
