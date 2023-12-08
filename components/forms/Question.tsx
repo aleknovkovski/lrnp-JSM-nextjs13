@@ -37,12 +37,14 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
     const pathname = usePathname();
     const { mode } = useTheme();
 
+    const parsedQuestionDetails = JSON.parse(questionDetails || '');
+
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
-            title: "",
-            explanation: "",
-            tags: [],
+            title: parsedQuestionDetails.title || '',
+            explanation: '',
+            tags: []
         },
     })
 
@@ -154,7 +156,7 @@ export default function Question({ type, mongoUserId, questionDetails }: Props) 
                                     }}
                                     onBlur={field.onBlur}
                                     onEditorChange={(content) => field.onChange(content)}
-                                    initialValue=""
+                                    initialValue={parsedQuestionDetails.content || ''}
                                     init={{
                                         // @ts-ignore
                                         height: 350,
