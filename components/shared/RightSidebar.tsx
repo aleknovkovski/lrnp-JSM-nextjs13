@@ -1,15 +1,7 @@
 import Link from "next/link";
 import Image from 'next/image';
 import RenderTag from "./RenderTag";
-
-const hotQuestions = [
-    {_id: '1', title: 'How do I use express as a custom server in NextJS?'},
-    {_id: '2', title: 'Cascading Deletes in SQLAlchemy?'},
-    {_id: '3', title: 'How to Perfectly Center a Div with Tailwind CSS?'},
-    {_id: '4', title: 'Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?'},
-    {_id: '5', title: 'Redux Toolkit Not Updating State as Expected'},
-];
-
+import {getHotQuestions} from "@/lib/actions/question.action";
 
 const popularTags = [
     {_id: '1', name: 'javascript', totalQuestions: 5},
@@ -19,7 +11,8 @@ const popularTags = [
     {_id: '5', name: 'redux', totalQuestions: 10},
 ]
 
-export default function LeftSidebar() {
+export default async function RightSidebar() {
+    const hotQuestions = await getHotQuestions();
 
     return (
         <section
@@ -30,7 +23,7 @@ export default function LeftSidebar() {
                     {hotQuestions.map((question) => {
                         return (
                             <Link
-                                href={`./questions/${question._id}`}
+                                href={`/question/${question._id}`}
                                 key={question._id}
                                 className='flex items-center justify-between gap-7'
                             >
