@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import {Input} from "@/components/ui/input";
+import {useSearchParams} from "next/navigation";
+import {useState} from "react";
 
 interface Props {
     imgSrc: string;
@@ -22,6 +26,12 @@ function iconMarkup(imgSrc: string) {
 }
 
 export default function LocalSearchbar(props: Props) {
+    const searchParams = useSearchParams();
+
+    const query = searchParams.get('q');
+
+    const [search, setSearch] = useState(query || '');
+
     return (
        <div className={`background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4 ${props.additionalClasses}`}>
 
@@ -30,7 +40,8 @@ export default function LocalSearchbar(props: Props) {
        <Input
            type="text"
            placeholder={props.placeholderText}
-           defaultValue=""
+           value={search}
+           onChange={(e) => setSearch(e.target.value)}
            className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
        />
 
