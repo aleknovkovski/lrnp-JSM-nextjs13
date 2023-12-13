@@ -4,10 +4,13 @@ import Filter from '@/components/shared/Filter'
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
 import { UserFilters } from '@/constants/filters'
 import Link from 'next/link'
+import {SearchParamsProps} from "@/types";
 
 
-export default async function CommunityPage() {
- const result = await getAllUsers({})
+export default async function CommunityPage({ searchParams }: SearchParamsProps) {
+    const result = await getAllUsers({
+        searchQuery: searchParams.q
+    })
 
 
  return (
