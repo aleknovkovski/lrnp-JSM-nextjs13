@@ -4,11 +4,15 @@ import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
 import { UserFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.actions'
 import Link from 'next/link'
+import {SearchParamsProps} from "@/types";
 
-export default async function Page () {
-  const result = await getAllTags({})
+export default async function Page ({ searchParams }: SearchParamsProps) {
+  const result = await getAllTags({
+      searchQuery: searchParams.q
+  })
 
-  return (
+
+    return (
     <>
       <h1 className="h1-bold text-dark100_light900">All Tags</h1>
 
