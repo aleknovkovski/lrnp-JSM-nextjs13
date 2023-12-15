@@ -12,13 +12,15 @@ interface Props {
  userId: string;
  totalAnswers: number;
  page?: number;
- filter?: number;
+ filter?: string;
 }
 
 
 export default async function AllAnswers ({ questionId, userId, totalAnswers, page, filter }: Props) {
  const result = await getAllAnswers({
    questionId,
+   page: page ? +page : 1,
+   sortBy: filter,
  })
 
 
