@@ -11,9 +11,9 @@ import {getUserById} from "@/lib/actions/user.action";
 import AllAnswers from "@/components/shared/AllAnswers";
 import Votes from "@/components/shared/Votes";
 
-interface params {params: { id: string }}
+interface params {params: { id: string }, searchParams: any}
 
-export default async function QuestionPage({params} : params) {
+export default async function QuestionPage({params, searchParams}: params) {
 
     const result = await getQuestionById({questionId: params.id})
     const { userId: clerkId } = auth();
@@ -100,6 +100,8 @@ export default async function QuestionPage({params} : params) {
         questionId={result._id}
         userId={mongoUser._id}
         totalAnswers={result.answers.length}
+        page={searchParams?.page}
+        filter={searchParams?.filter}
       />
 
       <Answer
