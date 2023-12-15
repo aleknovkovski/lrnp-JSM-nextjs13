@@ -12,7 +12,9 @@ export async function getAllAnswers(params: GetAnswersParams) {
  try {
    connectToDatabase();
 
-   const answers = await Answer.find({})
+   const { questionId } = params;
+
+   const answers = await Answer.find({ question: questionId })
   .populate({ path: 'author', model: User, select: '_id clerkId name picture'})
   .sort({ createdAt: -1 });
 
