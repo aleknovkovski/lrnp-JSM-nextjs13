@@ -6,6 +6,7 @@ import {AnswerFilters} from "@/constants/filters";
 import {getAllAnswers} from "@/lib/actions/answer.action";
 import Image from 'next/image';
 import Votes from "@/components/shared/Votes";
+import Pagination from "@/components/shared/Pagination";
 
 interface Props {
  questionId: string;
@@ -18,10 +19,10 @@ interface Props {
 
 export default async function AllAnswers ({ questionId, userId, totalAnswers, page, filter }: Props) {
  const result = await getAllAnswers({
-   questionId,
-   page: page ? +page : 1,
-   sortBy: filter,
- })
+    questionId,
+    page: page ? +page : 1,
+    sortBy: filter,
+  })
 
 
  return (
@@ -78,6 +79,13 @@ export default async function AllAnswers ({ questionId, userId, totalAnswers, pa
          </article>
        ))}
      </div>
+
+     <div className="mt-10 w-full">
+        <Pagination
+          pageNumber={page ? +page : 1}
+          hasNext={result.hasNextAnswers}
+        />
+      </div>
    </div>
  )
 }
