@@ -15,6 +15,7 @@ export default function GlobalSearch() {
     const query = searchParams.get('q');
 
     const [search, setSearch] = useState(query || '');
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
@@ -43,6 +44,7 @@ export default function GlobalSearch() {
     }, [search, router, pathname, searchParams, query])
 
     return (
+        <div className="relative w-full max-w-[600px] max-lg:hidden" >
         <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">
             <Image
                 src="/assets/icons/search.svg"
@@ -57,9 +59,14 @@ export default function GlobalSearch() {
                 value={search}
                 onChange={(e) => {
                     setSearch(e.target.value);
+
+                    if(!isOpen) setIsOpen(true);
+                    if(e.target.value === '' && isOpen) setIsOpen(false);
                 }}
                 className="paragraph-regular no-focus placeholder text-dark400_light700 background-light800_darkgradient border-none shadow-none outline-none"
             />
+        </div>
+            {isOpen && "<GlobalResult />"}
         </div>
     );
 }
