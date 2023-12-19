@@ -5,6 +5,7 @@ import {Input} from "@/components/ui/input";
 import {formUrlQuery, removeKeysFromQuery} from '@/lib/utils';
 import {useEffect, useRef, useState} from "react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import GlobalResult from "@/components/shared/search/GlobalResult";
 
 export default function GlobalSearch() {
 
@@ -87,7 +88,7 @@ export default function GlobalSearch() {
                 className="paragraph-regular no-focus placeholder text-dark400_light700 background-light800_darkgradient border-none shadow-none outline-none"
             />
         </div>
-            {isOpen && "<GlobalResult />"}
+            {isOpen && <GlobalResult />}
         </div>
     );
 }
