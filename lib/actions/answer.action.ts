@@ -68,10 +68,21 @@ export async function createAnswer(params: CreateAnswerParams) {
         });
 
         // Add the answer to the question's answers array
-        Question.findByIdAndUpdate(question, { $push: { answers: answer._id } })
+        const questionObject = await Question.findByIdAndUpdate(question, {
+            $push: { answers: answer._id}
+        })
 
-        // TODO: Add interaction
-        // Need to have an interactions model in the app first
+        // Add interaction
+        await Interaction.create({
+            user: author,
+            action: "answer",
+            question,
+            answer: answer._id,
+            tags: questionObject.tags
+        })
+
+        // Increase user reputation
+        await User.findByIdAndUpdate(author, { $inc: { reputation: 10 }})
 
         revalidatePath(path)
     } catch (error) {
@@ -104,7 +115,15 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
       throw new Error("Answer not found");
     }
 
+    // Increment user's reputation
+    await User.findByIdAndUpdate(userId, {
+      $inc: { reputation: hasupVoted ? -2 : 2 }
+    })
+
     // Increment author's reputation
+    await User.findByIdAndUpdate(answer.author, {
+      $inc: { reputation: hasupVoted ? -10 : 10 }
+    })
 
     revalidatePath(path);
   } catch (error) {
@@ -138,7 +157,15 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
       throw new Error("Answer not found");
     }
 
+    // Increment user's reputation
+    await User.findByIdAndUpdate(userId, {
+      $inc: { reputation: hasdownVoted ? -2 : 2 }
+    })
+
     // Increment author's reputation
+    await User.findByIdAndUpdate(answer.author, {
+      $inc: { reputation: hasdownVoted ? -10 : 10 }
+    })
 
     revalidatePath(path);
   } catch (error) {
