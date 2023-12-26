@@ -9,6 +9,7 @@ import QuestionCard from "@/components/cards/QuestionCard";
 import {getQuestions} from "@/lib/actions/question.action";
 import {SearchParamsProps} from "@/types";
 import Pagination from "@/components/shared/Pagination";
+import Loading from "@/app/(root)/(home)/loading";
 
 export default async function Home({ searchParams }: SearchParamsProps) {
     const results = await getQuestions({
@@ -16,6 +17,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         filter: searchParams.filter,
         page: searchParams.page ? +searchParams.page : 1
     });
+
+    // If you want to test loading scree, flip to true
+    const isLoading = false
+    if (isLoading) return <Loading/>
 
     return (
         <>
