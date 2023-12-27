@@ -39,6 +39,11 @@ export default function Votes ({
       questionId: JSON.parse(itemId),
       path: pathname,
     })
+
+    return toast({
+      title: `Question ${!hasSaved ? 'Saved in' : 'Removed from'} your collection`,
+      variant: !hasSaved ? 'default' : 'destructive'
+    })
   }
 
   const handleVote = async (action: string) => {
@@ -93,7 +98,10 @@ export default function Votes ({
         })
       }
 
-      // todo: show a toast
+      return toast({
+        title: `Downvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+        variant: !hasupVoted ? 'default' : 'destructive'
+      })
 
     }
   }
