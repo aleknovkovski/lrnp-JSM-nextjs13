@@ -8,6 +8,7 @@ import {downvoteAnswer, upvoteAnswer} from "@/lib/actions/answer.action";
 import {toggleSaveQuestion} from "@/lib/actions/user.action";
 import { useEffect } from "react";
 import { viewQuestion } from "@/lib/actions/interaction.action";
+import {toast} from "@/components/ui/use-toast";
 
 interface Props {
   type: string;
@@ -41,8 +42,11 @@ export default function Votes ({
   }
 
   const handleVote = async (action: string) => {
-     if(!userId) {
-      return;
+    if(!userId) {
+      return toast({
+        title: 'Please log in',
+        description: 'You must be logged in to perform this action',
+      })
     }
 
     if(action === 'upvote') {
@@ -64,8 +68,10 @@ export default function Votes ({
         })
       }
 
-      // todo: show a toast
-      return;
+      return toast({
+        title: `Upvote ${!hasupVoted ? 'Successful' : 'Removed'}`,
+        variant: !hasupVoted ? 'default' : 'destructive'
+      })
     }
 
     if(action === 'downvote') {
