@@ -6,23 +6,43 @@ import {HomePageFilters} from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/cards/QuestionCard";
-import {getQuestions} from "@/lib/actions/question.action";
+import {getQuestions, getRecommendedQuestions} from "@/lib/actions/question.action";
 import {SearchParamsProps} from "@/types";
 import Pagination from "@/components/shared/Pagination";
 import Loading from "@/app/(root)/(home)/loading";
 
 import type { Metadata } from 'next';
+import {auth} from "@clerk/nextjs";
 
 export const metadata: Metadata = {
     title: 'Home | Dev Overflow',
 }
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-    const results = await getQuestions({
-        searchQuery: searchParams.q,
-        filter: searchParams.filter,
-        page: searchParams.page ? +searchParams.page : 1
-    });
+    const { userId } = auth();
+
+    let results;
+
+    if(searchParams?.filter === 'recommended') {
+        if(userId) {
+            results = await getRecommendedQuestions({
+                userId,
+                searchQuery: searchParams.q,
+                page: searchParams.page ? +searchParams.page : 1,
+            });
+        } else {
+            results = {
+                questions: [],
+                isNext: false,
+            }
+        }
+    } else {
+        results = await getQuestions({
+            searchQuery: searchParams.q,
+            filter: searchParams.filter,
+            page: searchParams.page ? +searchParams.page : 1,
+        });
+    }
 
     // If you want to test loading scree, flip to true
     const isLoading = false
