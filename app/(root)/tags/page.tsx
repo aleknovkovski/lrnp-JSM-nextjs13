@@ -1,7 +1,7 @@
 import Filter from '@/components/shared/Filter'
 import NoResult from '@/components/shared/NoResult'
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar'
-import {TagFilters, UserFilters} from '@/constants/filters'
+import {TagFilters} from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.actions'
 import Link from 'next/link'
 import {SearchParamsProps} from "@/types";
