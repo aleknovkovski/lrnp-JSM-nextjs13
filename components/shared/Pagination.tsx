@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Props {
     pageNumber: number;
-    hasNext: boolean;
+    hasNext: boolean | undefined;
 }
 
 export default function Pagination ({ pageNumber, hasNext }: Props) {

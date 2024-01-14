@@ -12,13 +12,14 @@ export async function viewQuestion(params: ViewQuestionParams) {
     const { questionId, userId } = params;
 
     // Update view count for the question
-    await Question.findByIdAndUpdate(questionId, { $inc: { views: 1 }});
+    const questionDocument = await Question.findByIdAndUpdate(questionId, { $inc: { views: 1 }});
 
     if(userId) {
       const existingInteraction = await Interaction.findOne({
         user: userId,
         action: "view",
         question: questionId,
+        tags: questionDocument?.tags ? questionDocument.tags : []
       })
 
       if(existingInteraction) return console.log('User has already viewed.')
@@ -28,6 +29,7 @@ export async function viewQuestion(params: ViewQuestionParams) {
         user: userId,
         action: "view",
         question: questionId,
+        tags: questionDocument?.tags ? questionDocument.tags : []
       })
     }
   } catch (error) {
