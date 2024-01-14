@@ -66,9 +66,13 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         setIsSubmittingAI(true);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, {
+            const response = await fetch(`https://utils-openaimiddleware-production.up.railway.app/`, {
                 method: 'POST',
-                body: JSON.stringify({ question })
+                body: JSON.stringify({ question }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'Authorization': 'Bearer YOUR_TOKEN' // add this line if you're using a token
+                },
             })
 
             const aiAnswer = await response.json();
