@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'img.clerk.com'
       },
+      {
+        protocol: 'https',
+        hostname: 'flagsapi.com'
+      },
     ]
   }
 }
